@@ -1,2 +1,6 @@
 Flask
 Gunicorn
+pandas
+flask-cors
+APScheduler
+gensim
