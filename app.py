@@ -1,7 +1,7 @@
 import pandas as pd
 from flask import *
 import sqlite3
-from .monument_recommendation import Recommendation
+from monument_recommendation import Recommendation
 import csv
 import time
 from apscheduler.schedulers.background import BackgroundScheduler
