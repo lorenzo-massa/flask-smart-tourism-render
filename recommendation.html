@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Monumenti consigliati</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Monumenti consigliati</h1>
+            </div>
+        </div>
+        <div id="monumenti" class="row">
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            //$.getJSON('http://127.0.0.1:8888/getRecommendation/111', function(data) {
+                $.getJSON('http://127.0.0.1:5000/getRecommendation/111', function(data) {
+                $.each(data.monuments, function(index, value) {
+                    $('#monumenti').append(
+                        '<div class="col-md-3">' +
+                            '<div class="thumbnail">' +
+                                '<img src="' + data.image[index] + '" alt="' + value + '">' +
+                                '<div class="caption">' +
+                                    '<h3>' + value + '</h3>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>'
+                    );
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
