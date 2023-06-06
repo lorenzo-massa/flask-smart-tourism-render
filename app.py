@@ -15,9 +15,9 @@ def table_creation():
     conn = db_connection()
     cursor = conn.cursor()
     cursor.execute(
-        "CREATE TABLE IF NOT EXISTS user( id integer PRIMARY KEY, personal_id text NOT NULL, firstname text NOT NULL, lastname text NOT NULL)")
+        "CREATE TABLE IF NOT EXISTS user (id integer PRIMARY KEY, personal_id text NOT NULL, firstname text NOT NULL, lastname text NOT NULL)")
     cursor.execute(
-        "CREATE TABLE IF NOT EXISTS monument( id integer PRIMARY KEY, name text NOT NULL, description text NOT NULL, category text NOT NULL, image text NOT NULL)")
+        "CREATE TABLE IF NOT EXISTS monument (id integer PRIMARY KEY, name text NOT NULL, description text NOT NULL, category text NOT NULL, image text NOT NULL)")
     cursor.execute(
         "CREATE TABLE IF NOT EXISTS interaction (user_id integer NOT NULL,monument_id integer NOT NULL,PRIMARY KEY (user_id, monument_id),FOREIGN KEY (user_id) REFERENCES users(id),FOREIGN KEY (monument_id) REFERENCES monuments(id))")
     cursor.execute(
