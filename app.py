@@ -6,6 +6,7 @@ import csv
 import time
 from apscheduler.schedulers.background import BackgroundScheduler
 from flask_cors import CORS
+import sys
 
 app = Flask(__name__)
 CORS(app)
@@ -84,6 +85,9 @@ def create_csv(cursor):
 
 @app.route('/', methods=['GET'])
 def index():
+    print("table_creation", file=sys.stderr)
+    table_creation()
+
     return 'Welcome to the recommendation API!'
 
 
@@ -237,6 +241,7 @@ def get_recommendation(id):
 
 
 if __name__ == '__main__':
+    print("initializing app...", file=sys.stderr)
     table_creation()
     update_recommendation_db()
     app.run(port=8888)
