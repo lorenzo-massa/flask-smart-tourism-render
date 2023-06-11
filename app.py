@@ -130,8 +130,9 @@ def monument():
         new_name = request.form['name']
         new_description = request.form['description']
         new_category = request.form['category']
+        new_image = request.form['image']
         sql = " INSERT INTO monument (name, description, category, image) VALUES (?, ?, ?, ?)"
-        cursor = cursor.execute(sql, (new_name, new_description, new_category))
+        cursor = cursor.execute(sql, (new_name, new_description, new_category, new_image))
         conn.commit()
         return f"monument with id: {cursor.lastrowid} created succesfully"
 
