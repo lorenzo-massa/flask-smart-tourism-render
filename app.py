@@ -228,9 +228,9 @@ def single_monument(id):
 @app.route('/getRecommendation/<int:id>', methods=['GET'])
 def get_recommendation(id):
     conn = db_connection()
-    cursor = conn.execute("SELECT id FROM user WHERE personal_id = ?", (id,))
-    user_id = cursor.fetchone()
-    cursor.execute("SELECT r1, r2, r3 FROM recommendation WHERE user_id = ?", (user_id[0],))
+    #cursor = conn.execute("SELECT id FROM user WHERE personal_id = ?", (id,))
+    #user_id = cursor.fetchone()
+    cursor = conn.execute("SELECT r1, r2, r3 FROM recommendation WHERE user_id = ?", (id,))
     data = cursor.fetchone()
 
     images = []
