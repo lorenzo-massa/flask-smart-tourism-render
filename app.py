@@ -243,6 +243,10 @@ def get_recommendation(id):
         to_print = {'monuments': data, 'image': images}
         return jsonify(to_print)
     else:
+        cursor = conn.execute("SELECT * FROM recommendation")
+        interaction = [dict(user_id=row[0], r1=row[1], r2=row[2], r3=row[3]) for row in cursor.fetchall()]
+        if interaction is not None:
+            return jsonify(interaction)
         return 'Recommendation not found', 404
 
 
