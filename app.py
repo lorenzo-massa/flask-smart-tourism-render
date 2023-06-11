@@ -245,4 +245,4 @@ if __name__ == '__main__':
     print("initializing app...", file=sys.stderr)
     table_creation()
     update_recommendation_db()
-    app.run(port=8888)
+    #app.run(port=8888)
