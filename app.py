@@ -109,6 +109,7 @@ def user():
         sql = " INSERT INTO user (personal_id, firstname, lastname) VALUES (?, ?, ?)"
         cursor = cursor.execute(sql, (new_pers_id, new_firstname, new_lastname))
         conn.commit()
+        update_recommendation_db()
         return f"User with id: {cursor.lastrowid} created succesfully"
 
 
@@ -134,6 +135,7 @@ def monument():
         sql = " INSERT INTO monument (name, description, category, image) VALUES (?, ?, ?, ?)"
         cursor = cursor.execute(sql, (new_name, new_description, new_category, new_image))
         conn.commit()
+        update_recommendation_db()
         return f"monument with id: {cursor.lastrowid} created succesfully"
 
 
@@ -233,12 +235,15 @@ def get_recommendation(id):
     cursor = conn.execute("SELECT r1, r2, r3 FROM recommendation WHERE user_id = ?", (id,))
     data = cursor.fetchone()
 
-    images = []
-    for mon in data:
-        cursor.execute("SELECT image FROM monument WHERE name = ?", (mon,))
-        images.append(cursor.fetchone())
-    to_print = {'monuments': data, 'image': images}
-    return jsonify(to_print)
+    if data is not None:
+        images = []
+        for mon in data:
+            cursor.execute("SELECT image FROM monument WHERE name = ?", (mon,))
+            images.append(cursor.fetchone())
+        to_print = {'monuments': data, 'image': images}
+        return jsonify(to_print)
+    else:
+        return 'Recommendation not found', 404
 
 
 if __name__ == '__main__':
