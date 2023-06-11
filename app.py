@@ -163,7 +163,7 @@ def interaction():
 
     if request.method == 'GET':
         cursor = conn.execute("SELECT * FROM interaction")
-        interaction = [dict(user_id=row[1], monument_id=row[2]) for row in cursor.fetchall()]
+        interaction = [dict(user_id=row[0], monument_id=row[1]) for row in cursor.fetchall()]
         if interaction is not None:
             return jsonify(interaction)
 
